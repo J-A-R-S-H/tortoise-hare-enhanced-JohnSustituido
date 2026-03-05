@@ -133,3 +133,6 @@ function showResults() {
 }
 
 renderTrack();
+
+hareScoreEl.textContent = `Hare Score: ${hareScore}`;
+tortoiseScoreEl.textContent = `Tortoise Score: ${tortoiseScore}`;
