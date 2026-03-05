@@ -61,7 +61,7 @@ function raceStep() {
 function moveTortoise() {
   let roll = Math.floor(Math.random() * 10) + 1;
   if (roll >= 1 && roll <= 5) {
-    tortoisePosition += 40;
+    tortoisePosition += 2;
   } else if (roll >= 6 && roll <= 7) {
     tortoisePosition -= 1;
   } else {
@@ -72,13 +72,13 @@ function moveTortoise() {
 function moveHare() {
   let roll = Math.floor(Math.random() * 10) + 1;
   if (roll >= 1 && roll <= 3) {
-    harePosition += 5;
-  } else if (roll >= 4 && roll <= 6) {
-    harePosition -= 2;
-  } else if (roll >= 7 && roll <= 8) {
-    harePosition += 40;
-  } else {
     harePosition -= 4;
+  } else if (roll >= 4 && roll <= 6) {
+    harePosition += 5;
+  } else if (roll >= 7 && roll <= 8) {
+    harePosition -= 2;
+  } else {
+    harePosition += 4;
   }
 }
 
@@ -111,3 +111,28 @@ function renderTrack() {
     track.appendChild(cell);
   }
 }
+
+function showResults() {
+  if (tortoisePosition >= TRACK_LENGTH && harePosition >= TRACK_LENGTH) {
+    message.textContent = "It's a tie!";
+    hareScore++;
+    tortoiseScore++;
+  } else if (tortoisePosition >= TRACK_LENGTH) {
+    message.textContent = "The tortoise wins!";
+    tortoiseScore++;
+  } else if (harePosition >= TRACK_LENGTH) {
+    message.textContent = "The hare wins!";
+    hareScore++;
+  } else {
+    message.textContent = "Unexpected result!";
+  }
+  message.textContent += `Race finished in ${stepCount} steps! Tortoise: ${tortoisePosition}, Hare: ${harePosition}`;
+
+  hareScoreEl.textContent = `Hare Score: ${hareScore}`;
+  tortoiseScoreEl.textContent = `Tortoise Score: ${tortoiseScore}`;
+}
+
+renderTrack();
+
+hareScoreEl.textContent = `Hare Score: ${hareScore}`;
+tortoiseScoreEl.textContent = `Tortoise Score: ${tortoiseScore}`;
